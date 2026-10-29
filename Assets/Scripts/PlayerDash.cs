@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class PlayerDash : MonoBehaviour
 {
-    [Header("Configurações do Dash")]
+    [Header("Configuracoes do Dash")]
     public float dashDistance = 5f;
     public float dashCooldown = 2f;
 
-    [Header("Estamina")]
+    [Header("Barra de Estamina")]
     public Slider staminaBar;
 
     private CharacterController characterController;
@@ -19,33 +19,29 @@ public class PlayerDash : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         stamina = 1f;
-
-        if (staminaBar != null)
-        {
-            staminaBar.minValue = 0f;
-            staminaBar.maxValue = 1f;
-            staminaBar.value = stamina;
-        }
+        AtualizarBarra();
     }
 
     void Update()
     {
-        // Recarrega a estamina gradualmente.
+        // Recarrega a estamina durante 2 segundos.
         if (stamina < 1f)
         {
-            stamina += Time.deltaTime / dashCooldown;
-            stamina = Mathf.Clamp01(stamina);
+            float tempoRecarga = Mathf.Max(dashCooldown, 0.01f);
+
+            stamina = Mathf.MoveTowards(
+                stamina,
+                1f,
+                Time.deltaTime / tempoRecarga
+            );
         }
 
-        // Atualiza a barra visual.
-        if (staminaBar != null)
-        {
-            staminaBar.value = stamina;
-        }
+        AtualizarBarra();
 
-        // O dash só funciona quando a estamina está cheia.
+        // O dash acontece somente ao apertar R.
+        // O Espaco continua livre para o pulo.
         if (Keyboard.current != null &&
-            Keyboard.current.spaceKey.wasPressedThisFrame &&
+            Keyboard.current.rKey.wasPressedThisFrame &&
             stamina >= 1f)
         {
             Dash();
@@ -56,15 +52,29 @@ public class PlayerDash : MonoBehaviour
     {
         if (characterController == null)
         {
+            Debug.LogError(
+                "PlayerDash: CharacterController nao encontrado!"
+            );
             return;
         }
 
         // Gasta toda a estamina.
         stamina = 0f;
+        AtualizarBarra();
 
-        // Executa o dash.
+        // Executa o movimento do dash.
         characterController.Move(
             transform.forward * dashDistance
         );
+    }
+
+    void AtualizarBarra()
+    {
+        if (staminaBar != null)
+        {
+            staminaBar.minValue = 0f;
+            staminaBar.maxValue = 1f;
+            staminaBar.value = stamina;
+        }
     }
 }
