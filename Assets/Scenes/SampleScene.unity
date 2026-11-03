@@ -2074,6 +2074,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1783874049}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1783874055}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!1 &543762201
 GameObject:
@@ -6263,6 +6266,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186e525c06c904b469e347e566b2dc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeepPlayerOnGround
+--- !u!114 &1783874055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783874035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da0e9f6c3a910043954cfa1ee8571bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRun
+  velocidadeNormal: 4
+  velocidadeCorrendo: 15
 --- !u!1 &1817002965
 GameObject:
   m_ObjectHideFlags: 0
