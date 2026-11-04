@@ -6236,7 +6236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39316696e78107e4583e1c711dd2f5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
-  dashDistance: 3
+  dashDistance: 2
   dashCooldown: 2
   staminaBar: {fileID: 320326539}
 --- !u!114 &1783874043
